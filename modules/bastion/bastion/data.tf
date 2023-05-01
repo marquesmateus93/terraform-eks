@@ -26,17 +26,7 @@ data "aws_ami" "amazon_linux" {
       values    = ["795624187241"]
     }
 }
-
-data "aws_vpc" "vpc" {
-  filter {
-    name   = "tag:Name"
-    values = [local.vpc]
-  }
-}
-
-data "aws_subnet_ids" "public" {
-  vpc_id = data.aws_vpc.vpc.id
-
+data "aws_subnets" "public" {
   filter {
     name   = "tag:Name"
     values = [local.pubic_subnet]
