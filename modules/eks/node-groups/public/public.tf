@@ -8,6 +8,7 @@ resource "aws_eks_node_group" "public" {
 
     ami_type        = var.ami_type
     capacity_type   = var.capacity_type
+    instance_types = [var.instance_types.dev]
 
     remote_access {
       ec2_ssh_key               = var.ec2_ssh_key

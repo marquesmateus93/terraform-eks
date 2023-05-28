@@ -1,6 +1,6 @@
 resource "aws_iam_role" "eks" {
-    name                = local.eks_assume_role_name
-    assume_role_policy  = data.aws_iam_policy_document.assume_role.json
+    name                = local.iam_role_name
+    assume_role_policy  = data.aws_iam_policy_document.policy_document.json
 }
 
 resource "aws_iam_role_policy_attachment" "eks" {

@@ -41,6 +41,14 @@ variable "capacity_type" {
   }
 }
 
+variable "instance_types" {
+  description = ""
+  type        = map(string)
+  default     = {
+    dev = "t3.medium"
+  }
+}
+
 variable "ec2_ssh_key" {
   description = ""
   type        = string

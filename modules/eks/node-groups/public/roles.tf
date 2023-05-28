@@ -1,5 +1,5 @@
 resource "aws_iam_role" "public-eks-node-group" {
-    name                =local.aws_iam_role
+    name                = local.iam_role_name
     assume_role_policy  = data.aws_iam_policy_document.public-eks-node-group.json
 }
 
