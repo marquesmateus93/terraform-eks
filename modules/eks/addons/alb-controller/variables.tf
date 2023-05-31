@@ -11,18 +11,15 @@ variable "helm" {
   description = ""
   type        = map(string)
   default     = {
-    repository  = "https://kubernetes-sigs.github.io/aws-ebs-csi-driver"
-    chart       = "aws-ebs-csi-driver"
-    namespace   = "kube-system"
+    repository  = "https://aws.github.io/eks-charts"
+    chart       = "aws-load-balancer-controller"
   }
 }
 
-variable "policies" {
+variable "cluster_name" {
   description = ""
-  type        = list(string)
-  default     =  [
-    "AmazonEBSCSIDriverPolicy"
-  ]
+  type        = string
+  default     = ""
 }
 
 variable "openid" {
@@ -42,7 +39,7 @@ variable "assume_role_policy" {
   type        = map(string)
   default = {
     namespace           = "kube-system"
-    serviceAccountName  = "ebs-csi-controller-sa"
+    serviceAccountName  = "aws-load-balancer-controller"
   }
 }
 

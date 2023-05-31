@@ -1,4 +1,6 @@
 resource "aws_security_group" "allow_ssh" {
+    count = var.is_bastion_enable ? 1:0
+
     name            = local.security_group_name
     description     = "Allow SSH port from anywhere to access the Kubernetes cluster."
     vpc_id          = data.aws_vpc.vpc.id

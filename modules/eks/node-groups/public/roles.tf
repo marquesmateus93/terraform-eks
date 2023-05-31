@@ -1,6 +1,17 @@
 resource "aws_iam_role" "public-eks-node-group" {
     name                = local.iam_role_name
-    assume_role_policy  = data.aws_iam_policy_document.public-eks-node-group.json
+    assume_role_policy  = jsonencode({
+        "Version" = "2012-10-17"
+        "Statement" = [{
+            "Effect" = "Allow"
+            "Principal"  = {
+                "Service" = ["ec2.amazonaws.com"]
+            }
+            "Action" = [
+                "sts:AssumeRole"
+            ]
+        }]
+    })
 }
 
 resource "aws_iam_role_policy_attachment" "public-eks-node-group" {

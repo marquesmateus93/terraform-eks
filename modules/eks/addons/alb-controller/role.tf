@@ -1,4 +1,4 @@
-resource "aws_iam_role" "csi" {
+resource "aws_iam_role" "alb-controller" {
   name = local.role_name
 
   assume_role_policy = jsonencode({
@@ -21,9 +21,7 @@ resource "aws_iam_role" "csi" {
   })
 }
 
-resource "aws_iam_role_policy_attachment" "csi" {
-  for_each = toset(var.policies)
-
-  role       = aws_iam_role.csi.name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/${each.value}"
+resource "aws_iam_role_policy_attachment" "alb-controller" {
+  role       = aws_iam_role.alb-controller.name
+  policy_arn = aws_iam_policy.alb-controller.arn
 }

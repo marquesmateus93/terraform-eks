@@ -1,4 +1,6 @@
 data "aws_ami" "amazon_linux" {
+    count = var.is_bastion_enable ? 1:0
+
     most_recent = true
 
     filter {

@@ -10,9 +10,12 @@ resource "aws_eks_node_group" "public" {
     capacity_type   = var.capacity_type
     instance_types = [var.instance_types.dev]
 
-    remote_access {
-      ec2_ssh_key               = var.ec2_ssh_key
-      source_security_group_ids = [aws_security_group.public-eks-node-group.id]
+    dynamic "remote_access" {
+      for_each = aws_security_group.public-eks-node-group
+      content {
+        ec2_ssh_key               = var.ec2_ssh_key
+        source_security_group_ids = [aws_security_group.public-eks-node-group.id]
+      }
     }
 
     scaling_config {

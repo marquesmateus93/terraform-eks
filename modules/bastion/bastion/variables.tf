@@ -19,7 +19,19 @@ variable "key_pair_name" {
     default     = ""
 }
 
-variable "security_group_name" {
+variable "is_bastion_enable" {
+  description = "Bastion resource creation."
+  type        = bool
+  validation {
+    condition = (
+      var.is_bastion_enable == true ||
+      var.is_bastion_enable == false
+    )
+    error_message = "The value must be 'true' or 'false'."
+  }
+}
+
+variable "security_group_id" {
     description = ""
     type        = string
     default     = ""
