@@ -129,13 +129,13 @@ variable "is_bastion_enable" {
   }
 }
 
-variable "is_public_node_group_enable" {
+variable "is_private_node_group_enable" {
   description = "Public Node Group is created or not."
   type        = bool
   validation {
     condition = (
-    var.is_public_node_group_enable == true ||
-    var.is_public_node_group_enable == false
+    var.is_private_node_group_enable == true ||
+    var.is_private_node_group_enable == false
     )
     error_message = "The value must be 'true' or 'false'."
   }

@@ -1,5 +1,5 @@
-resource "aws_iam_role" "public-eks-node-group" {
-    count = var.is_public_node_group_enable ? 1:0
+resource "aws_iam_role" "private-eks-node-group" {
+    count = var.is_private_node_group_enable ? 1:0
 
     name                = local.iam_role_name
     managed_policy_arns = var.policies
