@@ -96,8 +96,8 @@ variable "cidrs" {
   description  = ""
   type          = map(string)
   default = {
-    ipv4 = "0.0.0.0/0"
-    ipv6 = "::/0"
+    ipv4      = "0.0.0.0/0"
+    ipv6      = "::/0"
   }
 }
 
@@ -124,18 +124,6 @@ variable "is_bastion_enable" {
     condition = (
     var.is_bastion_enable == true ||
     var.is_bastion_enable == false
-    )
-    error_message = "The value must be 'true' or 'false'."
-  }
-}
-
-variable "is_private_node_group_enable" {
-  description = "Public Node Group is created or not."
-  type        = bool
-  validation {
-    condition = (
-    var.is_private_node_group_enable == true ||
-    var.is_private_node_group_enable == false
     )
     error_message = "The value must be 'true' or 'false'."
   }

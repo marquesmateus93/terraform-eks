@@ -5,7 +5,7 @@ resource "helm_release" "alb-controller" {
   namespace   = var.assume_role_policy.namespace
 
   set {
-    name  = "controller.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
+    name  = "serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
     value = aws_iam_role.alb-controller.arn
   }
 
