@@ -1,4 +1,4 @@
-resource "helm_release" "secrets-store" {
+resource "helm_release" "aws-secrets-store" {
   name        = local.helm_name
   repository  = var.helm.repository
   chart       = var.helm.chart
