@@ -6,7 +6,7 @@ resource "helm_release" "secrets-store" {
 
   set {
     name  = "image.tag"
-    value = "1.0.r2-46-gf2a8f35-2023.03.21.21.55"
+    value = "1.0.r2-50-g5b4aca1-2023.06.09.21.19"
   }
 
   set {

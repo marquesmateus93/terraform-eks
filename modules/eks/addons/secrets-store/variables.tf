@@ -13,7 +13,7 @@ variable "helm" {
   default     = {
     repository  = "https://kubernetes-sigs.github.io/secrets-store-csi-driver/charts"
     chart       = "secrets-store-csi-driver"
-    namespace   = "default"
+    namespace   = "kube-system"
   }
 }
 
