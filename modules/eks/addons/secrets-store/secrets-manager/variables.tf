@@ -12,7 +12,7 @@ variable "helm" {
   type        = map(string)
   default     = {
     repository  = "https://aws.github.io/secrets-store-csi-driver-provider-aws"
-    chart       = "aws-secrets-manager"
+    chart       = "secrets-store-csi-driver-provider-aws"
     namespace   = "kube-system"
   }
 }
