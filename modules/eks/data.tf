@@ -1,0 +1,13 @@
+data "aws_subnets" "subnets" {
+  filter {
+    name   = "tag:Name"
+    values = [
+      "iaris-public-subnet",
+      "iaris-private-subnet"
+    ]
+  }
+}
+
+data "tls_certificate" "certificate" {
+  url = aws_eks_cluster.iaris-eks.identity[0].oidc[0].issuer
+}
