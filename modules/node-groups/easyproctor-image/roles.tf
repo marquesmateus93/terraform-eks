@@ -12,6 +12,9 @@ resource "aws_iam_role" "iaris-easyproctor-image-role-node-group" {
             ]
         }]
     })
+
+    tags = merge({Name = local.iaris-easyproctor-image-role-node-group.name},
+        var.tags)
 }
 
 resource "aws_iam_role_policy_attachment" "iaris-easyproctor-image-policy-attachment-node-group" {
@@ -38,6 +41,7 @@ resource "aws_iam_role_policy" "iaris-easyproctor-image-role-policy-node-group" 
             "Resource" = "*"
         }]
     })
+
     depends_on = [
         aws_iam_role.iaris-easyproctor-image-role-node-group
     ]
