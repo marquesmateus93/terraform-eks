@@ -14,7 +14,7 @@ resource "aws_iam_role" "iaris-general-role-node-group" {
     })
 
     tags = merge({Name = local.iaris-general-role-node-group.name},
-        var.tags)
+                var.tags)
 }
 
 resource "aws_iam_role_policy_attachment" "iaris-general-role-policy-attachment-node-group" {

@@ -12,7 +12,7 @@ resource "aws_iam_role" "iaris-eks-role" {
     })
 
     tags = merge({Name = local.iaris-eks-role.name},
-        var.tags)
+                var.tags)
 }
 
 resource "aws_iam_role_policy_attachment" "iaris-eks-policy-attachment" {

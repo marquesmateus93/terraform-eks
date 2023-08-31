@@ -14,7 +14,7 @@ resource "aws_iam_role" "iaris-easyproctor-image-role-node-group" {
     })
 
     tags = merge({Name = local.iaris-easyproctor-image-role-node-group.name},
-        var.tags)
+                var.tags)
 }
 
 resource "aws_iam_role_policy_attachment" "iaris-easyproctor-image-policy-attachment-node-group" {

@@ -119,38 +119,6 @@ variable "kubernetes_network_config" {
   }
 }
 
-variable "aws_auth" {
-  description = "AWS Auth namespace."
-  type        = object({
-    name      = string
-    namespace = string
-    force     = bool
-  })
-  default     = {
-    name      = "aws-auth"
-    namespace = "kube-system"
-    force     = true
-  }
-  validation {
-    condition = (
-    var.aws_auth.name == "aws-auth"
-    )
-    error_message = "ConfigMap name must to be 'aws-auth'."
-  }
-  validation {
-    condition = (
-    var.aws_auth.namespace == "kube-system"
-    )
-    error_message = "Namespace must to be 'kube-system'."
-  }
-  validation {
-    condition = (
-    var.aws_auth.force == true
-    )
-    error_message = "For must to be 'true' for aws-auth ConfigMap update."
-  }
-}
-
 variable "tags" {
   description = "Tracking tags."
   type        = map(string)

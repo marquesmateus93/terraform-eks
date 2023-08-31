@@ -11,8 +11,4 @@ resource "kubernetes_config_map_v1_data" "iaris-eks-auth-configmap" {
   }
 
   force = local.iaris-eks-auth-configmap.force
-
-  depends_on = [
-    aws_eks_cluster.iaris-eks
-  ]
 }
