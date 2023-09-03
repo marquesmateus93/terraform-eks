@@ -5,6 +5,6 @@ locals {
   }
 
   iaris-csi-role = {
-    name   = "${var.prefix_name}-iaris-csi-role-${var.tags["environment"]}"
+    name   = "${var.prefix_name}-csi-role-${var.tags["environment"]}"
   }
 }
