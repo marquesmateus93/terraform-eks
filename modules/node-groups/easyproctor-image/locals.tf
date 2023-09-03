@@ -39,7 +39,7 @@ locals {
       },
       {
         key                 = "k8s.io/cluster-autoscaler/node-template/resources/nvidia.com/gpu"
-        value               = "50"
+        value               = var.nvidia_gpu
         propagate_at_launch = true
       }
     ]

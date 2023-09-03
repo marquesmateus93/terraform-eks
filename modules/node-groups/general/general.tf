@@ -16,6 +16,8 @@ resource "aws_eks_node_group" "iaris-general-node-group" {
     min_size      = var.scaling_config.min_size
   }
 
+  disk_size = var.disk_space
+
   update_config {
     max_unavailable = var.max_unavailable
   }
@@ -25,5 +27,21 @@ resource "aws_eks_node_group" "iaris-general-node-group" {
 
   depends_on = [
     aws_iam_role.iaris-general-role-node-group
+  ]
+}
+
+resource "aws_autoscaling_group_tag" "iaris-general-autoscaling-group-tag" {
+  count = length(local.iaris-genral-autoscaling-group-tag.tag)
+
+  autoscaling_group_name = aws_eks_node_group.iaris-general-node-group.resources[0].autoscaling_groups[0].name
+
+  tag {
+    key                 = local.iaris-genral-autoscaling-group-tag.tag[count.index].key
+    value               = local.iaris-genral-autoscaling-group-tag.tag[count.index].value
+    propagate_at_launch = local.iaris-genral-autoscaling-group-tag.tag[count.index].propagate_at_launch
+  }
+
+  depends_on = [
+    aws_eks_node_group.iaris-general-node-group
   ]
 }

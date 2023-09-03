@@ -16,6 +16,8 @@ resource "aws_eks_node_group" "iaris-easyproctor-image-node-group" {
     min_size      = var.scaling_config.min_size
   }
 
+  disk_size = var.disk_space
+
   update_config {
     max_unavailable = var.max_unavailable
   }

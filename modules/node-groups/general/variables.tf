@@ -94,6 +94,21 @@ variable "instance_types" {
   }
 }
 
+variable "disk_space" {
+  description = "Node group disk size instance."
+  type        = string
+  default     = "80"
+  validation {
+    condition = (
+        contains([
+          "40", "60", "80", "100"
+        ], var.disk_space
+      )
+    )
+    error_message = "Choose one of disk size values: 40, 60, 80 or 100."
+  }
+}
+
 variable "scaling_config" {
   description = "Scale up and down parameters."
   type        = object({

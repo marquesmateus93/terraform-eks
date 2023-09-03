@@ -11,4 +11,14 @@ locals {
   iaris-general-role-policy-node-group = {
     name = "${var.prefix_name}-general-policy-node-group-${var.tags["environment"]}"
   }
+
+  iaris-genral-autoscaling-group-tag = {
+    tag = [
+      {
+        key                 = "k8s.io/cluster-autoscaler/enabled"
+        value               = "false"
+        propagate_at_launch = true
+      }
+    ]
+  }
 }

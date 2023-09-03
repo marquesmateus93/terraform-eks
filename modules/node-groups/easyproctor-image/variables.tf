@@ -55,7 +55,7 @@ variable "eks_version" {
 variable "capacity_type" {
   description = "value"
   type        = string
-  default     = "SPOT"
+  default     = "ON_DEMAND"
   validation {
     condition = anytrue([
       var.capacity_type == "ON_DEMAND",
@@ -92,6 +92,21 @@ variable "instance_types" {
       ))
     ])
     error_message = "The given AMI type doesn't exist in AWS."
+  }
+}
+
+variable "disk_space" {
+  description = "Node group disk size instance."
+  type        = string
+  default     = "80"
+  validation {
+    condition = (
+      contains([
+        "40", "60", "80", "100"
+        ], var.disk_space
+      )
+    )
+    error_message = "Choose one of disk size values: 40, 60, 80 or 100."
   }
 }
 
@@ -166,6 +181,20 @@ variable "policies" {
       for item in var.policies : can(regex("[[:alpha:]]", item))
     ])
     error_message = "The given policy name doesn't exist in AWS."
+  }
+}
+
+variable "nvidia_gpu" {
+  description = "GPU value."
+  type        = string
+  default     = "1"
+  validation {
+    condition = can(
+      can(regex(
+        regex("[1-100]", var.nvidia_gpu)
+      )
+      ))
+    error_message = "Out of range. [1-100]"
   }
 }
 
