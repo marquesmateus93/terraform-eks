@@ -1,6 +1,7 @@
 locals {
   iaris-csi-helm = {
-    name   = lower("${var.prefix_name}-csi-helm-${var.tags["environment"]}")
+    name                  = "${var.prefix_name}-csi-helm-${var.tags["environment"]}"
+    service_account_name  = "${var.prefix_name}-csi-service-account-${var.tags["environment"]}"
   }
 
   iaris-csi-role = {

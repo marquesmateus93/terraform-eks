@@ -14,14 +14,14 @@ variable "prefix_name" {
 variable "helm" {
   description = "Helm chart properties."
   type        = object({
-    repository  = string
-    chart       = string
-    namespace   = string
+    repository            = string
+    chart                 = string
+    namespace             = string
   })
   default = {
-    repository  = "https://kubernetes-sigs.github.io/aws-ebs-csi-driver"
-    chart       = "aws-ebs-csi-driver"
-    namespace   = "kube-system"
+    repository            = "https://aws.github.io/eks-charts"
+    chart                 = "aws-load-balancer-controller"
+    namespace             = "kube-system"
   }
   validation {
     condition = can(
@@ -43,23 +43,23 @@ variable "helm" {
   }
   validation {
     condition = (
-      var.helm.namespace == "kube-system"
+    var.helm.namespace == "kube-system"
     )
     error_message = "Namespace must to be 'kube-system'."
   }
 }
 
-variable "policies" {
-  description = "AWS suffix core policies names."
-  type        = list(string)
-  default     =  [
-    "AmazonEBSCSIDriverPolicy"
-  ]
+variable "cluster_name" {
+  description = "IARIS cluster name."
+  type        = string
   validation {
-    condition = alltrue([
-      for item in var.policies : can(regex("[[:alpha:]]", item))
-    ])
-    error_message = "The given policy name doesn't exist in AWS."
+    condition = (
+    can(regex(
+      "(iaris)-(eks)-(development|homologation|production)",
+      var.cluster_name
+    ))
+    )
+    error_message = "The given name doesn't match with the pattern name: iaris-ENVIRONMENT-eks"
   }
 }
 

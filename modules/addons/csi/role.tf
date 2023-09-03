@@ -13,7 +13,7 @@ resource "aws_iam_role" "iaris-csi-role" {
       },
       "Condition":{
         "StringEquals": {
-          "${var.oidc_without_protocol}:sub" = "system:serviceaccount:${var.helm.namespace}:${var.assume_role_policy}",
+          "${var.oidc_without_protocol}:sub" = "system:serviceaccount:${var.helm.namespace}:${local.iaris-csi-helm.service_account_name}",
           "${var.oidc_without_protocol}:aud" = "sts.amazonaws.com"
         }
       }
