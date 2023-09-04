@@ -1,4 +1,6 @@
 resource "helm_release" "iaris-csi-helm" {
+  count       = var.is_enabled ? 1:0
+
   name        = local.iaris-csi-helm.name
   repository  = var.helm.repository
   chart       = var.helm.chart

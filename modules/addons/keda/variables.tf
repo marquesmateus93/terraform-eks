@@ -27,14 +27,14 @@ variable "is_enabled" {
 variable "helm" {
   description = "Helm chart properties."
   type        = object({
-    repository  = string
-    chart       = string
-    namespace   = string
+    repository            = string
+    chart                 = string
+    namespace             = string
   })
   default = {
-    repository  = "https://aws.github.io/secrets-store-csi-driver-provider-aws"
-    chart       = "secrets-store-csi-driver-provider-aws"
-    namespace   = "kube-system"
+    repository            = "https://kedacore.github.io/charts"
+    chart                 = "keda"
+    namespace             = "kube-system"
   }
   validation {
     condition = can(

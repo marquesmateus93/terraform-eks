@@ -1,4 +1,6 @@
 resource "helm_release" "iaris-alb-controller-helm" {
+  count       = var.is_enabled ? 1:0
+
   name        = local.iaris-alb-controller-helm.name
   repository  = var.helm.repository
   chart       = var.helm.chart

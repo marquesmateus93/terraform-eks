@@ -11,6 +11,19 @@ variable "prefix_name" {
   }
 }
 
+variable "is_enabled" {
+  description = "Deploy the resource or not."
+  type        = bool
+  default     = true
+  validation {
+    condition = (
+      var.is_enabled == true ||
+      var.is_enabled == false
+    )
+    error_message = "Must be 'true' or 'false'."
+  }
+}
+
 variable "cluster_name" {
   description = "IARIS cluster name."
   type        = string

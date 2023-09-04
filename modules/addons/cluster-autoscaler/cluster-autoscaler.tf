@@ -1,4 +1,6 @@
 resource "helm_release" "iaris-cluster-autoscaler" {
+  count       = var.is_enabled ? 1:0
+
   name        = local.iaris-cluster-autoscaler-helm.name
   repository  = var.helm.repository
   chart       = var.helm.chart
