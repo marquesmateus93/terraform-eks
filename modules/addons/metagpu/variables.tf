@@ -64,7 +64,7 @@ variable "helm_iaris_metagpu" {
   default = {
     repository  = "oci://757477305767.dkr.ecr.us-east-2.amazonaws.com"
     chart       = "iaris-metagpu"
-    namespace   = "cnvrg"
+    namespace   = "nvidia"
   }
   validation {
     condition = can(

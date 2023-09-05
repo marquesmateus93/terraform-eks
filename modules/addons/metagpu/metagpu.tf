@@ -15,6 +15,11 @@ resource "helm_release" "iaris-metagpu" {
   namespace         = var.helm_iaris_metagpu.namespace
   create_namespace  = local.iaris-metagpu.create_namespace
 
+  set {
+    name  = "driver.namespace"
+    value = var.helm_iaris_metagpu.namespace
+  }
+
   depends_on = [
     helm_release.iaris-service-monitors
   ]
