@@ -5,4 +5,9 @@ resource "helm_release" "iaris-csi-secrets-store" {
   repository  = var.helm.repository
   chart       = var.helm.chart
   namespace   = var.helm.namespace
+
+  set {
+    name  = "syncSecret.enabled"
+    value = "true"
+  }
 }
