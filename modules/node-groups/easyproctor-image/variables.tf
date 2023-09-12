@@ -168,6 +168,20 @@ variable "max_unavailable" {
   }
 }
 
+variable "subnets" {
+  description = "Private subnets name or prefix."
+  type        = list(string)
+  default     = [
+    "iaris-private-subnet"
+  ]
+  validation {
+    condition = alltrue([
+      for subnet in var.subnets : can(regex("([a-z0-9-])", subnet))
+    ])
+    error_message = "The name must contain just lowercase, numbers and hifens."
+  }
+}
+
 variable "policies" {
   description = "AWS suffix core policies names."
   type        = list(string)

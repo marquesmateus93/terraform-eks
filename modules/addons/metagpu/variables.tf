@@ -31,8 +31,8 @@ variable "helm_iaris_service_monitors" {
     chart       = string
   })
   default = {
-    repository  = "oci://757477305767.dkr.ecr.us-east-2.amazonaws.com"
-    chart       = "iaris-service-monitors"
+    repository  = "oci://012999367507.dkr.ecr.us-east-2.amazonaws.com"
+    chart       = "iaris-helm-service-monitors"
   }
   validation {
     condition = can(
@@ -62,8 +62,8 @@ variable "helm_iaris_metagpu" {
     namespace   = string
   })
   default = {
-    repository  = "oci://757477305767.dkr.ecr.us-east-2.amazonaws.com"
-    chart       = "iaris-metagpu"
+    repository  = "oci://012999367507.dkr.ecr.us-east-2.amazonaws.com"
+    chart       = "iaris-helm-metagpu"
     namespace   = "nvidia"
   }
   validation {

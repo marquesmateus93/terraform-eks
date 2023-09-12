@@ -183,6 +183,20 @@ variable "policies" {
   }
 }
 
+variable "subnets" {
+  description = "Private subnets name or prefix."
+  type        = list(string)
+  default     = [
+    "iaris-private-subnet"
+  ]
+  validation {
+    condition = alltrue([
+      for subnet in var.subnets : can(regex("([a-z0-9-])", subnet))
+    ])
+    error_message = "The name must contain just lowercase, numbers and hifens."
+  }
+}
+
 variable "tags" {
   description = "Tracking tags."
   type        = map(string)

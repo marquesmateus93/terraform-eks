@@ -1,10 +1,7 @@
 data "aws_subnets" "subnets" {
   filter {
     name   = "tag:Name"
-    values = [
-      "iaris-public-subnet",
-      "iaris-private-subnet"
-    ]
+    values = var.subnets
   }
 }
 
