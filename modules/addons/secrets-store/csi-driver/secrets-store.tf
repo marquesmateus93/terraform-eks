@@ -10,4 +10,12 @@ resource "helm_release" "iaris-csi-secrets-store" {
     name  = "syncSecret.enabled"
     value = "true"
   }
+
+  dynamic "set" {
+    for_each = local.iaris-csi-secrets-store.tolerations
+    content {
+      name  = "linux.tolerations[${count.index}].${set.key}"
+      value = set.value
+    }
+  }
 }

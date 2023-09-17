@@ -2,7 +2,7 @@ resource "kubernetes_cluster_role_binding_v1" "iaris-azure-pipeline-cluster-role
   count = length(local.iaris_namespace.namespace)
 
   metadata {
-    name = local.iaris-azure-pipeline-cluster-role-binding[0].name
+    name = "${local.iaris-azure-pipeline-cluster-role-binding[0].name}-${var.namespaces[count.index]}"
   }
 
   subject {

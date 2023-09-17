@@ -5,4 +5,12 @@ resource "helm_release" "iaris-aws-secrets-store" {
   repository  = var.helm.repository
   chart       = var.helm.chart
   namespace   = var.helm.namespace
+
+  dynamic "set" {
+    for_each = local.iaris-aws-secrets-store.tolerations
+    content {
+      name  = "tolerations[${count.index}].${set.key}"
+      value = set.value
+    }
+  }
 }
