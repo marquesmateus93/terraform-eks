@@ -4,17 +4,17 @@ locals {
     instance_types  = var.tags["environment"] != "production" ? var.instance_types.non_production : var.instance_types.production
 
     taint = {
-      audio = {
-        key     = "behaviour/audio"
+      video = {
+        key     = "behaviour/video"
         value   = "NoSchedule"
         effect  = "NO_SCHEDULE"
       }
     }
 
     labels  = {
-      audio = [
+      video = [
         {
-          key   = "behaviour/audio"
+          key   = "behaviour/video"
           value = "present"
         }
       ]
@@ -24,12 +24,12 @@ locals {
   iaris-behaviour-video-autoscaling-group-tag = {
     tag = [
       {
-        key                 = "k8s.io/cluster-autoscaler/node-template/label/behaviour/audio"
+        key                 = "k8s.io/cluster-autoscaler/node-template/label/behaviour/video"
         value               = "present"
         propagate_at_launch = true
       },
       {
-        key                 = "k8s.io/cluster-autoscaler/node-template/taint/behaviour/audio"
+        key                 = "k8s.io/cluster-autoscaler/node-template/taint/behaviour/video"
         value               = "present"
         propagate_at_launch = true
       }

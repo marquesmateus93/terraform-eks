@@ -23,13 +23,13 @@ resource "aws_eks_node_group" "iaris-behaviour-video-node-group" {
   }
 
   taint {
-    key     = local.iaris-behaviour-video-node-group.taint.audio.key
-    value   = local.iaris-behaviour-video-node-group.taint.audio.value
-    effect  = local.iaris-behaviour-video-node-group.taint.audio.effect
+    key     = local.iaris-behaviour-video-node-group.taint.video.key
+    value   = local.iaris-behaviour-video-node-group.taint.video.value
+    effect  = local.iaris-behaviour-video-node-group.taint.video.effect
   }
 
   labels = {
-    "${local.iaris-behaviour-video-node-group.labels.audio[0].key}" = local.iaris-behaviour-video-node-group.labels.audio[0].value
+    "${local.iaris-behaviour-video-node-group.labels.video[0].key}" = local.iaris-behaviour-video-node-group.labels.video[0].value
   }
 
   tags = merge({Name = local.iaris-behaviour-video-node-group.name},
