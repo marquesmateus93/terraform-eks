@@ -7,7 +7,23 @@ resource "helm_release" "iaris-aws-secrets-store" {
   namespace   = var.helm.namespace
 
   dynamic "set" {
-    for_each = local.iaris-aws-secrets-store.tolerations
+    for_each = local.iaris-aws-secrets-store.tolerations.gpu
+    content {
+      name  = "tolerations[${count.index}].${set.key}"
+      value = set.value
+    }
+  }
+
+  dynamic "set" {
+    for_each = local.iaris-aws-secrets-store.tolerations.behaviour_audio
+    content {
+      name  = "tolerations[${count.index}].${set.key}"
+      value = set.value
+    }
+  }
+
+  dynamic "set" {
+    for_each = local.iaris-aws-secrets-store.tolerations.behaviour_video
     content {
       name  = "tolerations[${count.index}].${set.key}"
       value = set.value

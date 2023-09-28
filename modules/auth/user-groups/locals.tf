@@ -17,7 +17,23 @@ locals {
           "system:bootstrappers",
           "system:nodes"
         ]
-        rolearn     = var.node-groups.easyproctor-image
+        rolearn     = var.node-groups.behaviour-audio
+        username    = "system:node:{{EC2PrivateDNSName}}"
+      },
+      {
+        groups   = [
+          "system:bootstrappers",
+          "system:nodes"
+        ]
+        rolearn     = var.node-groups.behaviour-image
+        username    = "system:node:{{EC2PrivateDNSName}}"
+      },
+      {
+        groups   = [
+          "system:bootstrappers",
+          "system:nodes"
+        ]
+        rolearn     = var.node-groups.behaviour-video
         username    = "system:node:{{EC2PrivateDNSName}}"
       },
       {
@@ -32,7 +48,7 @@ locals {
 
   cluster_role = [
     {
-      name = "cluster-role-${local.iaris-eks-auth-configmap.default_map_roles[2].username}"
+      name = "cluster-role-${local.iaris-eks-auth-configmap.default_map_roles[4].username}"
       rule = [
         {
           apiGroups   = ["*"]
@@ -45,11 +61,11 @@ locals {
 
   cluster_role_binding = [
     {
-      name = "cluster-role-binding-${local.iaris-eks-auth-configmap.default_map_roles[2].username}"
+      name = "cluster-role-binding-${local.iaris-eks-auth-configmap.default_map_roles[4].username}"
       subjects = [
         {
           kind        = "Group"
-          name        = local.iaris-eks-auth-configmap.default_map_roles[2].username
+          name        = local.iaris-eks-auth-configmap.default_map_roles[4].username
           apiGroup    = "rbac.authorization.k8s.io"
         }
       ]

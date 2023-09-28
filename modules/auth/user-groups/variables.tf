@@ -47,7 +47,9 @@ variable "node-groups" {
   description = "Node groups ARNs."
   type        = object({
     general           = string
-    easyproctor-image = string
+    behaviour-audio   = string
+    behaviour-image   = string
+    behaviour-video   = string
   })
   validation {
     condition = can(
@@ -62,7 +64,25 @@ variable "node-groups" {
     condition = can(
       regex(
         "(arn:aws:iam::)([0-9]{12}:role)(\\/[A-Za-z-_]{1,64})",
-        var.node-groups.easyproctor-image
+        var.node-groups.behaviour-audio
+      )
+    )
+    error_message = "The given value doesn't correspond an ARN."
+  }
+  validation {
+    condition = can(
+      regex(
+        "(arn:aws:iam::)([0-9]{12}:role)(\\/[A-Za-z-_]{1,64})",
+        var.node-groups.behaviour-image
+      )
+    )
+    error_message = "The given value doesn't correspond an ARN."
+  }
+  validation {
+    condition = can(
+      regex(
+        "(arn:aws:iam::)([0-9]{12}:role)(\\/[A-Za-z-_]{1,64})",
+        var.node-groups.behaviour-video
       )
     )
     error_message = "The given value doesn't correspond an ARN."

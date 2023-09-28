@@ -1,6 +1,6 @@
 locals {
-  iaris-easyproctor-image-node-group = {
-    name            = "${var.prefix_name}-easyproctor-image-node-group-${var.tags["environment"]}"
+  iaris-behaviour-image-node-group = {
+    name            = "${var.prefix_name}-behaviour-image-node-group-${var.tags["environment"]}"
     instance_types  = var.tags["environment"] != "production" ? var.instance_types.non_production : var.instance_types.production
 
     taint = {
@@ -25,7 +25,7 @@ locals {
     }
   }
 
-  iaris-easyproctor-image-autoscaling-group-tag = {
+  iaris-behaviour-image-autoscaling-group-tag = {
     tag = [
       {
         key                 = "k8s.io/cluster-autoscaler/node-template/label/accelerator"
@@ -45,11 +45,11 @@ locals {
     ]
   }
 
-  iaris-easyproctor-image-role-node-group = {
-    name = "${var.prefix_name}-easyproctor-image-role-node-group-${var.tags["environment"]}"
+  iaris-behaviour-image-role-node-group = {
+    name = "${var.prefix_name}-behaviour-image-role-node-group-${var.tags["environment"]}"
   }
 
-  iaris-easyproctor-image-role-policy-node-group = {
-    name = "${var.prefix_name}-easyproctor-image-policy-node-group-${var.tags["environment"]}"
+  iaris-behaviour-image-role-policy-node-group = {
+    name = "${var.prefix_name}-behaviour-image-policy-node-group-${var.tags["environment"]}"
   }
 }

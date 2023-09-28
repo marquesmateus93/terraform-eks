@@ -12,7 +12,23 @@ resource "helm_release" "iaris-csi-secrets-store" {
   }
 
   dynamic "set" {
-    for_each = local.iaris-csi-secrets-store.tolerations
+    for_each = local.iaris-csi-secrets-store.tolerations.gpu
+    content {
+      name  = "linux.tolerations[${count.index}].${set.key}"
+      value = set.value
+    }
+  }
+
+  dynamic "set" {
+    for_each = local.iaris-csi-secrets-store.tolerations.behaviour_audio
+    content {
+      name  = "linux.tolerations[${count.index}].${set.key}"
+      value = set.value
+    }
+  }
+
+  dynamic "set" {
+    for_each = local.iaris-csi-secrets-store.tolerations.behaviour_video
     content {
       name  = "linux.tolerations[${count.index}].${set.key}"
       value = set.value

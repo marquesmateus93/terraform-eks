@@ -79,12 +79,12 @@ variable "helm" {
 variable "autoscaling_groups" {
   description = "Autoscaling Groups instances size."
   type        = object({
-    max_size  = string
-    min_size  = string
+    max_size = string
+    min_size = string
   })
   default = {
-    max_size  = "2"
-    min_size  = "0"
+    max_size = "2"
+    min_size = "0"
   }
   validation {
     condition = can(
