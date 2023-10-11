@@ -30,7 +30,7 @@ variable "cluster_name" {
   validation {
     condition = (
     can(regex(
-      "(iaris)-(eks)-(development|homologation|production)",
+      "(iaris)-(eks)-(development|staging|production)",
       var.cluster_name
     ))
     )
