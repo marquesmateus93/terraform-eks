@@ -40,6 +40,30 @@ resource "helm_release" "iaris-csi-helm" {
     }
   }
 
+  dynamic "set" {
+    for_each = local.iaris-csi-helm.tolerations.gpu
+    content {
+      name  = "controller.tolerations[0].${set.key}"
+      value = set.value
+    }
+  }
+
+  dynamic "set" {
+    for_each = local.iaris-csi-helm.tolerations.behaviour_audio
+    content {
+      name  = "controller.tolerations[1].${set.key}"
+      value = set.value
+    }
+  }
+
+  dynamic "set" {
+    for_each = local.iaris-csi-helm.tolerations.behaviour_video
+    content {
+      name  = "controller.tolerations[2].${set.key}"
+      value = set.value
+    }
+  }
+
   depends_on = [
     aws_iam_role.iaris-csi-role
   ]
