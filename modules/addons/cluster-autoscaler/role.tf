@@ -1,5 +1,5 @@
-resource "aws_iam_role" "iaris-cluster-autoscaler-role" {
-  name                = local.iaris-cluster-autoscaler-role.name
+resource "aws_iam_role" "news-cluster-autoscaler-role" {
+  name                = local.news-cluster-autoscaler-role.name
   assume_role_policy = jsonencode({
     "Version" = "2012-10-17",
     "Statement" = [{
@@ -12,20 +12,20 @@ resource "aws_iam_role" "iaris-cluster-autoscaler-role" {
       },
       "Condition" : {
         "StringEquals" : {
-          "${var.oidc_without_protocol}:sub" = "system:serviceaccount:${var.helm.namespace}:${local.iaris-cluster-autoscaler-role.service_account_name}",
+          "${var.oidc_without_protocol}:sub" = "system:serviceaccount:${var.helm.namespace}:${local.news-cluster-autoscaler-role.service_account_name}",
           "${var.oidc_without_protocol}:aud" = "sts.amazonaws.com"
         }
       }
     }]
   })
 
-  tags = merge({Name = local.iaris-cluster-autoscaler-role.name},
+  tags = merge({Name = local.news-cluster-autoscaler-role.name},
               var.tags)
 }
 
-resource "aws_iam_role_policy" "iaris-cluster-autoscaler-role-policy" {
-  name = local.iaris-cluster-autoscaler-role.name
-  role   = aws_iam_role.iaris-cluster-autoscaler-role.id
+resource "aws_iam_role_policy" "news-cluster-autoscaler-role-policy" {
+  name = local.news-cluster-autoscaler-role.name
+  role   = aws_iam_role.news-cluster-autoscaler-role.id
   policy = jsonencode({
     "Version": "2012-10-17"
     "Statement" = [{
@@ -54,6 +54,6 @@ resource "aws_iam_role_policy" "iaris-cluster-autoscaler-role-policy" {
     }]
   })
   depends_on = [
-    aws_iam_role.iaris-cluster-autoscaler-role
+    aws_iam_role.news-cluster-autoscaler-role
   ]
 }

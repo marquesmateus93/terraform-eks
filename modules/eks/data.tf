@@ -6,9 +6,9 @@ data "aws_subnets" "subnets" {
 }
 
 data "tls_certificate" "certificate" {
-  url = aws_eks_cluster.iaris-eks.identity[0].oidc[0].issuer
+  url = aws_eks_cluster.news-eks.identity[0].oidc[0].issuer
 
   depends_on = [
-    aws_eks_cluster.iaris-eks
+    aws_eks_cluster.news-eks
   ]
 }

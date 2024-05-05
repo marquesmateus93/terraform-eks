@@ -4,10 +4,11 @@ variable "prefix_name" {
   validation {
     condition = can(
       regex(
-        "[[:lower:]]", var.prefix_name
+        "[a-z-]",
+        var.prefix_name
       )
     )
-    error_message = "Just lowercase, '_' and '-' are allowed."
+    error_message = "Just uppercase and hifen are allowed."
   }
 }
 
@@ -43,50 +44,9 @@ variable "aws_auth" {
   }
 }
 
-variable "node-groups" {
-  description = "Node groups ARNs."
-  type        = object({
-    general           = string
-    behaviour-audio   = string
-    behaviour-image   = string
-    behaviour-video   = string
-  })
-  validation {
-    condition = can(
-      regex(
-        "(arn:aws:iam::)([0-9]{12}:role)(\\/[A-Za-z-_]{1,64})",
-        var.node-groups.general
-      )
-    )
-    error_message = "The given value doesn't correspond an ARN."
-  }
-  validation {
-    condition = can(
-      regex(
-        "(arn:aws:iam::)([0-9]{12}:role)(\\/[A-Za-z-_]{1,64})",
-        var.node-groups.behaviour-audio
-      )
-    )
-    error_message = "The given value doesn't correspond an ARN."
-  }
-  validation {
-    condition = can(
-      regex(
-        "(arn:aws:iam::)([0-9]{12}:role)(\\/[A-Za-z-_]{1,64})",
-        var.node-groups.behaviour-image
-      )
-    )
-    error_message = "The given value doesn't correspond an ARN."
-  }
-  validation {
-    condition = can(
-      regex(
-        "(arn:aws:iam::)([0-9]{12}:role)(\\/[A-Za-z-_]{1,64})",
-        var.node-groups.behaviour-video
-      )
-    )
-    error_message = "The given value doesn't correspond an ARN."
-  }
+variable "custom_map_rules" {
+  description = "AWS roles map."
+  type = list(any)
 }
 
 variable "tags" {

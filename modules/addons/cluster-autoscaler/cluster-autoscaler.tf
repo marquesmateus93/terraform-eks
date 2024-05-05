@@ -1,24 +1,24 @@
-resource "helm_release" "iaris-cluster-autoscaler" {
+resource "helm_release" "news-cluster-autoscaler" {
   count       = var.is_enabled ? 1:0
 
-  name        = local.iaris-cluster-autoscaler-helm.name
+  name        = local.news-cluster-autoscaler.name
   repository  = var.helm.repository
   chart       = var.helm.chart
   namespace   = var.helm.namespace
 
   set {
     name  = "rbac.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
-    value = aws_iam_role.iaris-cluster-autoscaler-role.arn
+    value = aws_iam_role.news-cluster-autoscaler-role.arn
   }
 
   set {
     name  = "rbac.serviceAccount.name"
-    value = local.iaris-cluster-autoscaler-role.service_account_name
+    value = local.news-cluster-autoscaler-role.service_account_name
   }
 
   set {
     name  = "awsRegion"
-    value = data.aws_region.iaris_current_region.name
+    value = data.aws_region.current_region.name
   }
 
   set {
@@ -27,6 +27,6 @@ resource "helm_release" "iaris-cluster-autoscaler" {
   }
 
   depends_on = [
-    aws_iam_role.iaris-cluster-autoscaler-role
+    aws_iam_role.news-cluster-autoscaler-role
   ]
 }

@@ -1,5 +1,5 @@
-resource "aws_iam_role" "iaris-csi-role" {
-  name = local.iaris-csi-role.name
+resource "aws_iam_role" "news-csi-role" {
+  name = local.news-csi-role.name
 
   assume_role_policy = jsonencode({
     "Version" = "2012-10-17",
@@ -13,7 +13,7 @@ resource "aws_iam_role" "iaris-csi-role" {
       },
       "Condition":{
         "StringEquals": {
-          "${var.oidc_without_protocol}:sub" = "system:serviceaccount:${var.helm.namespace}:${local.iaris-csi-helm.service_account_name}",
+          "${var.oidc_without_protocol}:sub" = "system:serviceaccount:${var.helm.namespace}:${local.news-csi-helm.service_account_name}",
           "${var.oidc_without_protocol}:aud" = "sts.amazonaws.com"
         }
       }
@@ -21,13 +21,13 @@ resource "aws_iam_role" "iaris-csi-role" {
   })
 }
 
-resource "aws_iam_role_policy_attachment" "iaris-csi-policy-attachment" {
+resource "aws_iam_role_policy_attachment" "news-csi-policy-attachment" {
   for_each = toset(var.policies)
 
-  role       = aws_iam_role.iaris-csi-role.name
+  role       = aws_iam_role.news-csi-role.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/${each.value}"
 
   depends_on = [
-    aws_iam_role.iaris-csi-role
+    aws_iam_role.news-csi-role
   ]
 }

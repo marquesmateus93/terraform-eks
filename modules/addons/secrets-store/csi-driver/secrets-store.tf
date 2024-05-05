@@ -1,7 +1,7 @@
-resource "helm_release" "iaris-csi-secrets-store" {
+  resource "helm_release" "news-csi-secrets-store" {
   count       = var.is_enabled ? 1:0
 
-  name        = local.iaris-csi-secrets-store.name
+  name        = local.news-csi-secrets-store.name
   repository  = var.helm.repository
   chart       = var.helm.chart
   namespace   = var.helm.namespace
@@ -12,7 +12,7 @@ resource "helm_release" "iaris-csi-secrets-store" {
   }
 
   dynamic "set" {
-    for_each = local.iaris-csi-secrets-store.tolerations.gpu
+    for_each = local.news-csi-secrets-store.tolerations.gpu
     content {
       name  = "linux.tolerations[0].${set.key}"
       value = set.value
@@ -20,7 +20,7 @@ resource "helm_release" "iaris-csi-secrets-store" {
   }
 
   dynamic "set" {
-    for_each = local.iaris-csi-secrets-store.tolerations.behaviour_audio
+    for_each = local.news-csi-secrets-store.tolerations.news_feed
     content {
       name  = "linux.tolerations[1].${set.key}"
       value = set.value
@@ -28,7 +28,7 @@ resource "helm_release" "iaris-csi-secrets-store" {
   }
 
   dynamic "set" {
-    for_each = local.iaris-csi-secrets-store.tolerations.behaviour_video
+    for_each = local.news-csi-secrets-store.tolerations.news_system
     content {
       name  = "linux.tolerations[2].${set.key}"
       value = set.value

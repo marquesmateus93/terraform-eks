@@ -1,10 +1,10 @@
 locals {
-  iaris-cluster-autoscaler-helm = {
-    name = lower("${var.prefix_name}-autoscaler-helm-${var.tags["environment"]}")
+  news-cluster-autoscaler = {
+    name = lower("${var.prefix_name}-autoscaler-${var.tags["environment"]}")
   }
 
-  iaris-cluster-autoscaler-role = {
+  news-cluster-autoscaler-role = {
     name                  = "${var.prefix_name}-autoscaler-role-${var.tags["environment"]}"
-    service_account_name  = "${var.prefix_name}-autoscaler-service-account-${var.tags["environment"]}"
+    service_account_name  = "${var.prefix_name}-autoscaler-sa-${var.tags["environment"]}"
   }
 }

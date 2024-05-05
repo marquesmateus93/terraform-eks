@@ -1,1 +1,1 @@
-data "aws_partition" "iaris-partition" {}
+data "aws_partition" "news-partition" {}

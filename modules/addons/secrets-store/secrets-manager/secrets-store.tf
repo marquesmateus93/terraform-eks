@@ -1,13 +1,13 @@
-resource "helm_release" "iaris-aws-secrets-store" {
+resource "helm_release" "news-aws-secrets-store" {
   count       = var.is_enabled ? 1:0
 
-  name        = local.iaris-aws-secrets-store.name
+  name        = local.news-aws-secrets-store.name
   repository  = var.helm.repository
   chart       = var.helm.chart
   namespace   = var.helm.namespace
 
   dynamic "set" {
-    for_each = local.iaris-aws-secrets-store.tolerations.gpu
+    for_each = local.news-aws-secrets-store.tolerations.gpu
     content {
       name  = "tolerations[0].${set.key}"
       value = set.value
@@ -15,7 +15,7 @@ resource "helm_release" "iaris-aws-secrets-store" {
   }
 
   dynamic "set" {
-    for_each = local.iaris-aws-secrets-store.tolerations.behaviour_audio
+    for_each = local.news-aws-secrets-store.tolerations.news_feed
     content {
       name  = "tolerations[1].${set.key}"
       value = set.value
@@ -23,7 +23,7 @@ resource "helm_release" "iaris-aws-secrets-store" {
   }
 
   dynamic "set" {
-    for_each = local.iaris-aws-secrets-store.tolerations.behaviour_video
+    for_each = local.news-aws-secrets-store.tolerations.news_system
     content {
       name  = "tolerations[2].${set.key}"
       value = set.value

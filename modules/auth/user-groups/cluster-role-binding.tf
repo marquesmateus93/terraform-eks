@@ -1,4 +1,4 @@
-resource "kubernetes_cluster_role_binding_v1" "iaris-eks-cluster-role-binding" {
+resource "kubernetes_cluster_role_binding_v1" "news-eks-cluster-role-binding" {
   count = length(local.cluster_role_binding)
 
   metadata {
@@ -18,6 +18,6 @@ resource "kubernetes_cluster_role_binding_v1" "iaris-eks-cluster-role-binding" {
   }
 
   depends_on = [
-    kubernetes_cluster_role_v1.iaris-eks-cluster-role
+    kubernetes_cluster_role_v1.news-eks-cluster-role
   ]
 }

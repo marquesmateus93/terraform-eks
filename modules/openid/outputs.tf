@@ -1,3 +1,3 @@
 output "oidc_provider" {
-  value = aws_iam_openid_connect_provider.iaris-openid.arn
+  value = aws_iam_openid_connect_provider.news-openid.arn
 }

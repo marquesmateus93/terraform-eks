@@ -1,26 +1,26 @@
-resource "helm_release" "iaris-service-monitors" {
+resource "helm_release" "news-service-monitors" {
   count       = var.is_enabled ? 1:0
 
-  name        = local.iaris-service-monitors.name
-  repository  = var.helm_iaris_service_monitors.repository
-  chart       = var.helm_iaris_service_monitors.chart
+  name        = local.news-service-monitors.name
+  repository  = var.helm_service_monitors.repository
+  chart       = var.helm_service_monitors.chart
 }
 
-resource "helm_release" "iaris-metagpu" {
+resource "helm_release" "news-metagpu" {
   count             = var.is_enabled ? 1:0
 
-  name              = local.iaris-metagpu.name
-  repository        = var.helm_iaris_metagpu.repository
-  chart             = var.helm_iaris_metagpu.chart
-  namespace         = var.helm_iaris_metagpu.namespace
-  create_namespace  = local.iaris-metagpu.create_namespace
+  name              = local.news-metagpu.name
+  repository        = var.helm_metagpu.repository
+  chart             = var.helm_metagpu.chart
+  namespace         = var.helm_metagpu.namespace
+  create_namespace  = local.news-metagpu.create_namespace
 
   set {
     name  = "driver.namespace"
-    value = var.helm_iaris_metagpu.namespace
+    value = var.helm_metagpu.namespace
   }
 
   depends_on = [
-    helm_release.iaris-service-monitors
+    helm_release.news-service-monitors
   ]
 }

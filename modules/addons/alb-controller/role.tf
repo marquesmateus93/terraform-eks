@@ -1,5 +1,5 @@
-resource "aws_iam_role" "iaris-alb-controller-role" {
-  name = local.iaris-alb-controller-role.name
+resource "aws_iam_role" "news-alb-controller-role" {
+  name = local.news-alb-controller-role.name
 
   assume_role_policy = jsonencode({
     "Version" = "2012-10-17",
@@ -13,7 +13,7 @@ resource "aws_iam_role" "iaris-alb-controller-role" {
       },
       "Condition":{
         "StringEquals": {
-          "${var.oidc_without_protocol}:sub" = "system:serviceaccount:${var.helm.namespace}:${local.iaris-alb-controller-helm.service_account_name}",
+          "${var.oidc_without_protocol}:sub" = "system:serviceaccount:${var.helm.namespace}:${local.news-alb-controller.service_account_name}",
           "${var.oidc_without_protocol}:aud" = "sts.amazonaws.com"
         }
       }
@@ -21,22 +21,22 @@ resource "aws_iam_role" "iaris-alb-controller-role" {
   })
 }
 
-resource "aws_iam_policy" "iaris-alb-controller-policy" {
-  name        = local.iaris-alb-controller-policy.name
+resource "aws_iam_policy" "news-alb-controller-policy" {
+  name        = local.news-alb-controller-policy.name
   description = "Policy body from GitHub document."
-  policy      = data.http.iaris-alb-controller-policy-json.response_body
+  policy      = data.http.news-alb-controller-policy-json.response_body
 
   depends_on = [
-    data.http.iaris-alb-controller-policy-json,
-    aws_iam_role.iaris-alb-controller-role
+    data.http.news-alb-controller-policy-json,
+    aws_iam_role.news-alb-controller-role
   ]
 }
 
-resource "aws_iam_role_policy_attachment" "iaris-alb-controller-policy-attachment" {
-  role       = aws_iam_role.iaris-alb-controller-role.name
-  policy_arn = aws_iam_policy.iaris-alb-controller-policy.arn
+resource "aws_iam_role_policy_attachment" "news-alb-controller-policy-attachment" {
+  role       = aws_iam_role.news-alb-controller-role.name
+  policy_arn = aws_iam_policy.news-alb-controller-policy.arn
 
   depends_on = [
-    aws_iam_policy.iaris-alb-controller-policy
+    aws_iam_policy.news-alb-controller-policy
   ]
 }

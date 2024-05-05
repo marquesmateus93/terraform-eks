@@ -4,17 +4,18 @@ variable "prefix_name" {
   validation {
     condition = can(
       regex(
-        "[[:lower:]]", var.prefix_name
+        "[a-z-]",
+        var.prefix_name
       )
     )
-    error_message = "Just lowercase, '_' and '-' are allowed."
+    error_message = "Just uppercase and hifen are allowed."
   }
 }
 
 variable "eks_version" {
   description = "EKS version number."
   type        = string
-  default     = "1.27"
+  default     = "1.28"
   validation {
     condition = can(
       regex(
@@ -34,7 +35,7 @@ variable "policies" {
   ]
   validation {
     condition = alltrue([
-      for item in var.policies : can(regex("[[:alpha:]]", item))
+      for item in var.policies : can(regex("[a-z-]", item))
     ])
     error_message = "The given policy name doesn't exist in AWS."
   }
@@ -123,7 +124,7 @@ variable "subnets" {
   description = "Private subnets name or prefix."
   type        = list(string)
   default     = [
-    "iaris-private-subnet"
+    "marques-private-subnet"
   ]
   validation {
     condition = alltrue([

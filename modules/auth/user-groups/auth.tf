@@ -1,14 +1,17 @@
-resource "kubernetes_config_map_v1_data" "iaris-eks-auth-configmap" {
+resource "kubernetes_config_map_v1_data" "news-eks-auth-configmap" {
   metadata {
-    name      = local.iaris-eks-auth-configmap.name
-    namespace = local.iaris-eks-auth-configmap.namespace
+    name      = local.news-eks-auth-configmap.name
+    namespace = local.news-eks-auth-configmap.namespace
   }
 
   data = {
     mapRoles = yamlencode(
-      local.iaris-eks-auth-configmap.default_map_roles
+      concat(
+        local.news-eks-auth-configmap.default_map_roles,
+        var.custom_map_rules
+      )
     )
   }
 
-  force = local.iaris-eks-auth-configmap.force
+  force = local.news-eks-auth-configmap.force
 }

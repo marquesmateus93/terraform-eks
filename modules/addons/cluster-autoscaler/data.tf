@@ -1,1 +1,1 @@
-data "aws_region" "iaris_current_region" {}
+data "aws_region" "current_region" {}

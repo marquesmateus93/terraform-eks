@@ -1,14 +1,14 @@
-resource "helm_release" "iaris-alb-controller-helm" {
+resource "helm_release" "news-alb-controller" {
   count       = var.is_enabled ? 1:0
 
-  name        = local.iaris-alb-controller-helm.name
+  name        = local.news-alb-controller.name
   repository  = var.helm.repository
   chart       = var.helm.chart
   namespace   = var.helm.namespace
 
   set {
     name  = "serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
-    value = aws_iam_role.iaris-alb-controller-role.arn
+    value = aws_iam_role.news-alb-controller-role.arn
   }
 
   set {
@@ -18,10 +18,10 @@ resource "helm_release" "iaris-alb-controller-helm" {
 
   set {
     name  = "serviceAccount.name"
-    value = local.iaris-alb-controller-helm.service_account_name
+    value = local.news-alb-controller.service_account_name
   }
 
   depends_on = [
-    aws_iam_role.iaris-alb-controller-role
+    aws_iam_role.news-alb-controller-role
   ]
 }

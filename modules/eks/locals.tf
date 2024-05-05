@@ -1,5 +1,5 @@
 locals {
-    iaris-eks = {
+    news-eks = {
         name        = "${var.prefix_name}-eks-${var.tags["environment"]}"
         version     = var.eks_version
 
@@ -10,13 +10,13 @@ locals {
         }
     }
 
-    iaris-eks-role = {
+    news-eks-role = {
         name = "${var.prefix_name}-eks-role-${var.tags["environment"]}"
-        path = "/iaris/eks/development/"
+        #path = "/marques/news/eks/development/"
     }
 
-    iaris-eks-policy = {
+    news-eks-policy = {
         name    = "${var.prefix_name}-eks-policy-${var.tags["environment"]}"
-        path    = "iaris/eks/development/"
+        #path    = "/marques/news/eks/development/"
     }
 }

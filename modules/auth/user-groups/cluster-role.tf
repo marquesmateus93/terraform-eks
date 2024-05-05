@@ -1,4 +1,4 @@
-resource "kubernetes_cluster_role_v1" "iaris-eks-cluster-role" {
+resource "kubernetes_cluster_role_v1" "news-eks-cluster-role" {
   count = length(local.cluster_role)
 
   metadata {
@@ -12,6 +12,6 @@ resource "kubernetes_cluster_role_v1" "iaris-eks-cluster-role" {
   }
 
   depends_on = [
-    kubernetes_config_map_v1_data.iaris-eks-auth-configmap
+    kubernetes_config_map_v1_data.news-eks-auth-configmap
   ]
 }

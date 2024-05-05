@@ -4,10 +4,11 @@ variable "prefix_name" {
   validation {
     condition = can(
       regex(
-        "[[:lower:]]", var.prefix_name
+        "[a-z-]",
+        var.prefix_name
       )
     )
-    error_message = "Just lowercase, '_' and '-' are allowed."
+    error_message = "The Prefix Name must contain just lowercase and hyphens."
   }
 }
 
@@ -20,7 +21,7 @@ variable "is_enabled" {
       var.is_enabled == true ||
       var.is_enabled == false
     )
-    error_message = "Must be 'true' or 'false'."
+    error_message = "Must to be 'true' or 'false'."
   }
 }
 

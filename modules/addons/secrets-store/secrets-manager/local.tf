@@ -1,5 +1,5 @@
 locals {
-  iaris-aws-secrets-store = {
+  news-aws-secrets-store = {
     name = lower("${var.prefix_name}-aws-secrets-manager-${var.tags["environment"]}")
 
     tolerations = {
@@ -8,13 +8,13 @@ locals {
         operator  = "Exists"
         effect    = "NoSchedule"
       }
-      behaviour_audio = {
-        key       = "behaviour/audio"
+      news_feed = {
+        key       = "news/feed"
         operator  = "Exists"
         effect    = "NoSchedule"
       }
-      behaviour_video = {
-        key       = "behaviour/video"
+      news_system = {
+        key       = "news/system"
         operator  = "Exists"
         effect    = "NoSchedule"
       }

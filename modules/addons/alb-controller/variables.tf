@@ -4,10 +4,11 @@ variable "prefix_name" {
   validation {
     condition = can(
       regex(
-        "[[:lower:]]", var.prefix_name
+        "[a-z-]",
+        var.prefix_name
       )
     )
-    error_message = "Just lowercase, '_' and '-' are allowed."
+    error_message = "The Prefix Name must contain just lowercase and hyphens."
   }
 }
 
@@ -63,16 +64,18 @@ variable "helm" {
 }
 
 variable "cluster_name" {
-  description = "IARIS cluster name."
+  description = "News cluster name."
   type        = string
   validation {
     condition = (
-    can(regex(
-      "(iaris)-(eks)-(development|staging|production)",
-      var.cluster_name
-    ))
+      can(
+        regex(
+          "(marques)-(eks)-(dev|stg|prod)",
+          var.cluster_name
+        )
+      )
     )
-    error_message = "The given name doesn't match with the pattern name: iaris-ENVIRONMENT-eks"
+    error_message = "The given name doesn't match with the pattern name: news-eks-ENVIRONMENT"
   }
 }
 

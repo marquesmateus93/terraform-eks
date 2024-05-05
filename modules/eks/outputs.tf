@@ -1,9 +1,9 @@
 output "cluster_name" {
-  value = aws_eks_cluster.iaris-eks.name
+  value = aws_eks_cluster.news-eks.name
 }
 
 output "eks_version" {
-  value = aws_eks_cluster.iaris-eks.version
+  value = aws_eks_cluster.news-eks.version
 }
 
 output "oidc" {

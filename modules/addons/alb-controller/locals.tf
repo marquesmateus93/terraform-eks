@@ -1,14 +1,14 @@
 locals {
-  iaris-alb-controller-helm = {
-    name                  = "${var.prefix_name}-alb-controller-helm-${var.tags["environment"]}"
-    service_account_name  = "${var.prefix_name}-alb-controller-service-account-${var.tags["environment"]}"
+  news-alb-controller = {
+    name                  = "${var.prefix_name}-alb-controller-${var.tags["environment"]}"
+    service_account_name  = "${var.prefix_name}-alb-controller-sa-${var.tags["environment"]}"
   }
 
-  iaris-alb-controller-role = {
+  news-alb-controller-role = {
     name = "${var.prefix_name}-alb-controller-role-${var.tags["environment"]}"
   }
 
-  iaris-alb-controller-policy = {
+  news-alb-controller-policy = {
     name = "${var.prefix_name}-alb-controller-policy-${var.tags["environment"]}"
   }
 }

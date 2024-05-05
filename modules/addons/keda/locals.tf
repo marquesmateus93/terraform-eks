@@ -1,6 +1,6 @@
 locals {
-  iaris-keda-helm = {
-    name                  = "${var.prefix_name}-keda-helm-${var.tags["environment"]}"
+  news-keda-helm = {
+    name                  = "${var.prefix_name}-keda-${var.tags["environment"]}"
     create_namespace      = true
   }
 }

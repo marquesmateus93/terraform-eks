@@ -1,7 +1,7 @@
 locals {
-  iaris-csi-helm = {
-    name                  = "${var.prefix_name}-csi-helm-${var.tags["environment"]}"
-    service_account_name  = "${var.prefix_name}-csi-service-account-${var.tags["environment"]}"
+  news-csi-helm = {
+    name                  = "${var.prefix_name}-csi-${var.tags["environment"]}"
+    service_account_name  = "${var.prefix_name}-csi-sa-${var.tags["environment"]}"
 
     tolerations = {
       gpu = {
@@ -9,20 +9,20 @@ locals {
         operator  = "Exists"
         effect    = "NoSchedule"
       }
-      behaviour_audio = {
-        key       = "behaviour/audio"
+      news_feed = {
+        key       = "news/feed"
         operator  = "Exists"
         effect    = "NoSchedule"
       }
-      behaviour_video = {
-        key       = "behaviour/video"
+      news_system = {
+        key       = "news/system"
         operator  = "Exists"
         effect    = "NoSchedule"
       }
     }
   }
 
-  iaris-csi-role = {
+  news-csi-role = {
     name   = "${var.prefix_name}-csi-role-${var.tags["environment"]}"
   }
 }
