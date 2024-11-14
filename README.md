@@ -2,7 +2,7 @@
 
 ## About
 
-The project creates a EKS cluster with core components.
+The project creates an EKS cluster with core components.
 
 ## Core Components
 
@@ -39,3 +39,8 @@ The project creates a EKS cluster with core components.
 ## Requirements
 
 - AWS Admin role.
+
+## Structure
+
+![VPC-EKS drawio](https://github.com/user-attachments/assets/5e5c7b57-1c92-452e-b00e-41fe70a14023)
+
