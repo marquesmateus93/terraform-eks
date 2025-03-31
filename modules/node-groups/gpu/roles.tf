@@ -36,7 +36,8 @@ resource "aws_iam_role_policy" "gpu-role-policy-ng" {
         "Statement" = [{
             "Effect" = "Allow"
             "Action" = [
-                "elasticloadbalancing:Describe*"
+                "elasticloadbalancing:Describe*",
+                "AmazonSSMManagedInstanceCore"
             ]
             "Resource" = "*"
         }]
